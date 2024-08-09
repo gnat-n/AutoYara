@@ -40,27 +40,27 @@ import me.tongfei.progressbar.ProgressBarStyle;
 public class Bytes2Bloom
 {
     @Parameter(names="--filter-size")
-    int filterSize = Integer.MAX_VALUE - 18;
+    public int filterSize = Integer.MAX_VALUE - 18;
     
     @Parameter(names={"--false-pos-rate", "-fp"})
-    double false_pos = 0.01;
+    public double false_pos = 0.01;
     
     @Parameter(names={"--progress-bar", "-pb"})
-    boolean pb_bars = false;
+    public boolean pb_bars = false;
     
     @Parameter(names="--name", description="NGrams to keep")
-    String out_name;
+    public String out_name;
     
     @Parameter(names={"--too-keep", "-k"}, required=true, description="NGrams to keep")
-    int tooKeep;
+    public int tooKeep;
     @Parameter(names={"--ngram-size", "-n"}, required=true, description="Sizes of ngrams")
-    List<Integer> gramSizes;
+    public List<Integer> gramSizes;
     
     @Parameter(names={"--input-dir", "-i"}, converter = FileConverter.class, required=true, description="Directory of files to n-gram")
-    File inDir;
+    public File inDir;
     
     @Parameter(names={"--out", "-o"}, converter = FileConverter.class, required=true, description="Output file")
-    File outDir;
+    public File outDir;
             
     public static void main(String... args) throws IOException
     {

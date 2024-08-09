@@ -71,69 +71,69 @@ public class AutoYaraCluster
 {
     
     @Parameter(names={"--false-pos-benign", "-fpb"}, description = "The maximum false-positive rate among other benign files to consider using a given signature")
-    double false_pos_b = 0.001;
+    public double false_pos_b = 0.001;
     
     @Parameter(names={"--false-pos-malicious", "-fpm"}, description = "The maximum false-positive rate among other malicious files to consider using a given signature")
-    double false_pos_m = 0.001;
+    public double false_pos_m = 0.001;
     
     @Parameter(names={"--min-support-ratio", "-msr"}, description = "The minimum fraction of input files that must be covered by an n-gram for the n-gram to be considered as a potential signature")
-    double support_ratio = 0.5;
+    public double support_ratio = 0.5;
     
     @Parameter(names={"--min-entropy", "-me"}, description = "The minimum entropy level required of an n-gram to be considered")
-    double min_entropy = 1.0;
+    public double min_entropy = 1.0;
     
     @Parameter(names={"--max-filter-size", "-mfs"}, description = "Maximum filter size to use in signature creation. Larger values may improve rule quality, but increase RAM usage")
-    int max_filter_size = 214748383;//default value is a prime that will use ~1 GB of RAM
+    public int max_filter_size = 214748383;//default value is a prime that will use ~1 GB of RAM
     
     @Parameter(names={"--min-support-count", "-msc"}, description = "The minimum number of files that a potential signature must catch to be considered for inclusion in the larger rule.")
-    int support_count = 2;
+    public int support_count = 2;
     
     /**
      * How many different rules do we want that cover the same input files?
      */
     @Parameter(names="--target-coverage", description = "During rule construction, how many sub-rules do you want to hit on each example? Larger values lead to larger rules.")
-    int ways_covered = 1;
+    public int ways_covered = 1;
     
     
     @Parameter(names={"--to-keep", "-k"}, description="The number of n-gram candidates to create at every step of the process")
-    int toKeep = 100000;
+    public int toKeep = 100000;
     
     @Parameter(names={"--benign", "-b"}, converter = FileConverter.class, description="Directory of bloom filters for benign files")
-    File benign_bloom_dir = new File("benign-bytes");
+    public File benign_bloom_dir = new File("benign-bytes");
     
     @Parameter(names={"--malicious", "-m"}, converter = FileConverter.class, description="Directory of bloom filters for Malicious Files")
-    File malicious_bloom_dir = new File("malicious-bytes");
+    public File malicious_bloom_dir = new File("malicious-bytes");
         
     @Parameter(names={"--fp-dirs", "-fpds"}, converter = FileConverter.class, required=false, 
         variableArity = true,
         description="Directories of files to check against for false positivesas part of evaluation. These will not be used to alter the rule generated.")
-    List<File> fpEvalDirs = new ArrayList<>();
+    public List<File> fpEvalDirs = new ArrayList<>();
     
     @Parameter(names={"--tp-dirs", "-tpds"}, converter = FileConverter.class, required=false, 
         variableArity = true,
         description="Directories of files to check against for true positives as part of evaluation. These will not be used to alter the rule generated.")
-    List<File> tpEvalDirs = new ArrayList<>();
+    public List<File> tpEvalDirs = new ArrayList<>();
     
     @Parameter(names={"--input-dir", "-i"}, converter = FileConverter.class, required=true, 
         variableArity = true,
         description="Directory of files to n-gram")
-    List<File> inDir;
+    public List<File> inDir;
     
     @Parameter(names = "--save-all-rules",
         description = "If true, all yara rules created will be saved, rather "
                 + "than just the best-found rule. This may be useful if the "
                 + "selection heuristics do not actually select the best rule, or"
                 + " you wish to do more testing / investigation. ")
-    boolean save_all_rules = false;
+    public boolean save_all_rules = false;
     
     @Parameter(names = "--help", help = true)
-    boolean help = false;
+    public boolean help = false;
     
     @Parameter(names = "--silent")
-    boolean silent = false;
+    public boolean silent = false;
     
     @Parameter(names = "--print-rules", description = "If true, print out the yara-rules onto the command line.")
-    boolean print_rules = false;
+    public boolean print_rules = false;
     
     @Parameter(names={"--out", "-o"}, converter = FileConverter.class, 
         description="Output file/directory. If only one rule is to be created, "
@@ -142,7 +142,7 @@ public class AutoYaraCluster
                 + "the first directory in the given path will be used. Multiple "
                 + "rules will be saved with a pre-fix of the rule size type. By "
                 + "default, rules are writen out to the current directory. ")
-    File out_file = null;
+    public File out_file = null;
     
     public static void main(String... args) throws IOException
     {
